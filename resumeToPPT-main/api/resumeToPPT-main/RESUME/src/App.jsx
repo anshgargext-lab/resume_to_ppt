@@ -35,32 +35,10 @@ function App() {
       const blob = await response.blob();
 
       const url = window.URL.createObjectURL(blob);
-
       const link = document.createElement("a");
 
       link.href = url;
-
-      // =========================
-      // GET FILENAME FROM BACKEND
-      // =========================
-
-      const contentDisposition =
-        response.headers.get("Content-Disposition");
-
-      let filename = "Resume_Presentation.pptx";
-
-      if (contentDisposition) {
-
-        const match = contentDisposition.match(
-          /filename="?([^"]+)"?/
-        );
-
-        if (match?.[1]) {
-          filename = match[1];
-        }
-      }
-
-      link.download = filename;
+      link.download = "Resume_Presentation.pptx";
 
       document.body.appendChild(link);
 
